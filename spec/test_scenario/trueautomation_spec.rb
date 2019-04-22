@@ -4,29 +4,11 @@ feature 'TrueAutomation.IO capybara example' do
   scenario 'Test example' do
     visit 'https://trueautomation.io/'
 
-    find(:xpath, "//div[./span[text()='Login']]").click
-
-    within(:xpath, "//div[@class='sign-up-container']") do
-      find(:css, 'div.sign-up-container > a').click
+    within(:xpath, "//div[@data-id='cb9e2c1']") do
+      # find(:xpath, "//a[contains(., 'Learn more')]").click #doesn't work! only special capybara methods
+      click_link('Learn more')
     end
 
-    fill_in 'email', with: 'your@mail.com'
     sleep 3
   end
-
-  # scenario 'Test example' do
-  #   visit 'https://trueautomation.io/'
-  #
-  #   find(:xpath, ta('trueautomationio:home:loginBtn', "//div[./span[text()='Login']]")).click
-  #
-  #   within(:xpath, ta('trueautomationio:container', "//div[@class='sign-up-container']")) do
-  #     # find(:css, 'div.sign-up-container > a').click
-  #     find(:css, ta('trueautomationio:signin:signupBtn', 'div.sign-up-container > a')).click
-  #   end
-  #
-  #   # find(:css, ta('trueautomationio:signin:signupBtn', 'div.sign-up-container > a')).click
-  #
-  #   fill_in ta('trueautomationio:signup:email', 'email'), with: 'your@mail.com'
-  #   sleep 3
-  # end
 end

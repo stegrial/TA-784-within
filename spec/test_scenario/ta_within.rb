@@ -8,10 +8,10 @@ feature 'TrueAutomation.IO capybara example' do
     # TA will say you if your element is outside the container! You will see the error - Element not found!
     # The main rule for the method `find` - element should be one on the page, because TA always takes the first element!
 
-    1.times do
+    2.times do
       visit 'https://trueautomation.io/'
 
-      within(:xpath, ta('within:container:xpath', "//header")) do
+      within(:xpath, ta('within:container:find', "//header")) do
         find(:xpath, ta('within:element_inside:1', "//a[contains(., 'Login')]")).click
       end
 

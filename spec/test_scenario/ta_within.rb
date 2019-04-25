@@ -18,7 +18,7 @@ feature 'TrueAutomation.IO capybara example' do
       sleep 3
       end
   end
-if (false)
+
   scenario 'Test example 2 - within locator type :xpath' do
 
     2.times do
@@ -62,8 +62,8 @@ if (false)
 
       within(:xpath, ta('within:container:outside', "//header")) do
         find(:xpath, ta('within:element_inside:5', "(//a[contains(., 'Learn more')])[1]")).click
-      rescue
-        raise 'Checked: the element is outside the container - initialization!'
+      # rescue
+      #   raise 'Checked: the element is outside the container - initialization!'
       end
 
       sleep 3
@@ -76,14 +76,14 @@ if (false)
 
       within(:xpath, ta('within:container:outside', "//header")) do
         find(:xpath, ta('within:element_inside:2', "(//a[contains(., 'Learn more')])[2]")).click
-      rescue
-        raise 'Checked: the element is outside the container - TA!'
+      # rescue
+      #   raise 'Checked: the element is outside the container - TA!'
       end
 
       sleep 3
     end
   end
-
+  # if (false)
   scenario 'Test example 7 - click_link and two elements on the page (second element)' do
     2.times do
       visit 'https://trueautomation.io/'
@@ -195,5 +195,5 @@ if (false)
       sleep 3
     end
   end
-end
+# end
 end

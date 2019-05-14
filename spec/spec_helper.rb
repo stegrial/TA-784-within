@@ -24,11 +24,15 @@ $data = OpenStruct.new($data)
 Dir[File.join(spec_dir, 'support/**/*.rb')].each {|f| require f}
 
 RSpec.configure do |config|
+  # services = Selenium::WebDriver::Service.chrome(args: {
+  #     log_path: "chrome#{Time.now.to_i}.log",
+  #     verbose: true
+  # })
   Capybara.register_driver :true_automation_driver do |app|
     TrueAutomation::Driver::Capybara.new(app)
   end
 
-  # Capybara.register_driver :chrome do |app|
+  # Capybara.register_driver :true_automation_driver do |app|
   #   Capybara::Selenium::Driver.new(app, browser: :chrome)
   # end
 

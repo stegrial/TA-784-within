@@ -2,15 +2,19 @@ require 'spec_helper'
 
 feature 'TrueAutomation.IO capybara example' do
 
-  scenario 'Test example 6 - element is not present in container (TA)' do
+  scenario 'Test example 14 - select id' do
     1.times do
-      visit 'https://trueautomation.io/'
+      visit 'https://www.facebook.com'
 
-      within(:xpath, ta('within:container:outside', "//header")) do
-        find(:xpath, ta('within:element_inside:2', "(//a[contains(., 'Learn more')])[2]")).click
-        rescue
-          raise 'Checked: the element is outside the container - TA!'
-      end
+      # within(:id, ta('within:container:select', 'reg_box')) do
+      #   select('11', from: ta('within:element_inside:select', 'day'))
+      # end
+      #
+      # sleep 100
+
+      # within(:id, 'reg_box') do
+        select('31', from: 'day')
+      # end
 
       sleep 3
     end

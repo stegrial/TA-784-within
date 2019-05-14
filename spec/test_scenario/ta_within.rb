@@ -110,7 +110,7 @@ feature 'TrueAutomation.IO capybara example' do
 
   scenario 'Test example 9 - fill_in id' do
     2.times do
-      visit 'https://trueautomation.io/'
+      visit 'https://app.trueautomation.io/auth/signin'
 
       within(:xpath, ta('within:container:fill_in', "//form")) do
         fill_in(ta('within:element_inside:fill_in:id', 'login_password'), with: 'password')
@@ -122,7 +122,7 @@ feature 'TrueAutomation.IO capybara example' do
 
   scenario 'Test example 10 - fill_in name' do
     2.times do
-      visit 'https://trueautomation.io/'
+      visit 'https://app.trueautomation.io/auth/signin'
 
       within(:xpath, ta('within:container:fill_in', "//form")) do
         fill_in(ta('within:element_inside:fill_in:name', 'username'), with: 'username@domain')
@@ -134,7 +134,7 @@ feature 'TrueAutomation.IO capybara example' do
 
   scenario 'Test example 11 - element is not present in container (initialization)' do
     1.times do
-      visit 'https://trueautomation.io/'
+      visit 'https://app.trueautomation.io/auth/signin'
 
       within(:xpath, ta('within:container:fill_in:outside', "//div[@class='container login-header']")) do
         fill_in(ta('within:element_inside:fill_in:negative', 'username'), with: 'username@domain')
@@ -148,7 +148,7 @@ feature 'TrueAutomation.IO capybara example' do
 
   scenario 'Test example 12 - element is not present in container (TA)' do
     1.times do
-      visit 'https://trueautomation.io/'
+      visit 'https://app.trueautomation.io/auth/signin'
 
       within(:xpath, ta('within:container:fill_in:outside', "//div[@class='container login-header']")) do
         fill_in(ta('within:element_inside:fill_in:name', 'username'), with: 'username@domain')
@@ -162,7 +162,7 @@ feature 'TrueAutomation.IO capybara example' do
 
   scenario 'Test example 13 - click_button' do
     2.times do
-      visit 'https://trueautomation.io/'
+      visit 'https://app.trueautomation.io/auth/signin'
 
       within(:xpath, ta('within:container:click_button', "//form")) do
         click_button(ta('within:element_inside:click_button', 'Login'))

@@ -1,27 +1,21 @@
 require 'spec_helper'
 
 feature 'TrueAutomation.IO capybara example' do
-  scenario 'Test example' do
-    # visit 'https://trueautomation.io/'
-    visit 'https://www.facebook.com'
+  scenario 'Test example 1 - find method' do
+    # you can correctly use `find` method inside `within` only through the TA driver;
+    # the`find` method performs searching element at all html document in any way, so element should be present inside the container for sure;
+    # Capybara without TA also performs searching element using `find` method, but Capybara does not say you if element is outside the container;
+    # TA will say you if your element is outside the container! You will see the error - Element not found!
+    # The main rule for the method `find` - element should be one on the page, because TA always takes the first element!
 
+    1.times do
+      visit 'https://trueautomation.io/'
 
-    # within(:xpath, "//header") do
-    #   find(:xpath, "(//a[contains(., 'Learn more')])[2]").click #doesn't work! only special capybara methods
-      # click_link('Learn More')
-    # end
+      # within(:xpath, ta('within:container:find', "//header")) do
+        find(:xpath, ta('within:element_inside:2', "//a[contains(., 'Login')]")).click
+      # end
 
-    # within(:id, 'reg_box') do
-    #   select('11', :from => 'day')
-    # end
-
-    within(:id, 'reg_box') do
-      choose('Мужчина')
+      sleep 3
     end
-
-    # click_link('/*[1]/*[2]/*[1]/*[3]/*[1]/*[1]/*[1]/*[1]/*[4]/*[2]/*[1]/*[1]/*[1]/*[1]/*[4]/*[1]/*[1]/*[1]/*[1]/*[1]/*[1]/*[1]/*[1]/*[1]/*[1]/*[1]')
-    # click_link("//a[contains(., 'Login')]")
-
-    sleep 3
   end
 end

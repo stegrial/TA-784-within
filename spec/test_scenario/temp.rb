@@ -6,15 +6,15 @@ feature 'TrueAutomation.IO capybara example' do
     1.times do
       visit 'https://www.facebook.com'
 
-      # within(:id, ta('within:container:select', 'reg_box')) do
-      #   select('11', from: ta('within:element_inside:select', 'day'))
+      # within(:id, ta('select:container', 'reg_box')) do
+      #   select('11', from: ta('select:inside', 'day'))
       # end
       #
       # sleep 100
 
-      # within(:id, 'reg_box') do
+      within(:id, 'reg_box') do
         select('31', from: 'day')
-      # end
+      end
 
       sleep 3
     end

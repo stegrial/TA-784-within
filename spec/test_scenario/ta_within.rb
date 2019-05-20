@@ -12,7 +12,7 @@ feature 'TrueAutomation.IO capybara example' do
       visit 'https://trueautomation.io/'
 
       within(:xpath, ta('within:container:find', "//header")) do
-        find(:xpath, ta('within:element_inside:1', "//a[contains(., 'Login')]")).click
+        find(:xpath, ta('within:element_inside_1', "//a[contains(., 'Login')]")).click
       end
 
       sleep 3
@@ -25,7 +25,7 @@ feature 'TrueAutomation.IO capybara example' do
       visit 'https://trueautomation.io/'
 
       within(:xpath, ta('within:container:xpath', "//div[@data-id='cb9e2c1']")) do
-        find(:xpath, ta('within:element_inside:2', "(//a[contains(., 'Learn more')])[2]")).click
+        find(:xpath, ta('within:element_inside_2', "(//a[contains(., 'Learn more')])[2]")).click
       end
 
       sleep 3
@@ -37,7 +37,7 @@ feature 'TrueAutomation.IO capybara example' do
       visit 'https://trueautomation.io/'
 
       within(:css, ta('within:container:css', "div[data-id='41cebdb1']")) do
-        find(:css, ta('within:element_inside:3', "div[data-id='41cebdb1'] > div > div > div > div > div > div > a")).click
+        find(:css, ta('within:element_inside_3', "div[data-id='41cebdb1'] > div > div > div > div > div > div > a")).click
       end
 
       sleep 3
@@ -49,7 +49,7 @@ feature 'TrueAutomation.IO capybara example' do
       visit 'https://www.facebook.com'
 
       within(:id, ta('within:container:id', 'login_form')) do
-        find(:id, ta('within:element_inside:4', 'email')).set('username@domain')
+        find(:id, ta('within:element_inside_4', 'email')).set('username@domain')
       end
 
       sleep 3
@@ -60,10 +60,10 @@ feature 'TrueAutomation.IO capybara example' do
     1.times do
       visit 'https://trueautomation.io/'
 
-      within(:xpath, ta('within:container:outside', "//header")) do
-        find(:xpath, ta('within:element_inside:5', "(//a[contains(., 'Learn more')])[1]")).click
-      # rescue
-      #   raise 'Checked: the element is outside the container - initialization!'
+      within(:xpath, ta('within:container:outside_init', "//header")) do
+        find(:xpath, ta('within:element_inside:negative_1', "(//a[contains(., 'Learn more')])[1]")).click
+      rescue
+        raise 'Checked: the element is outside the container - initialization!'
       end
 
       sleep 3
@@ -73,11 +73,13 @@ feature 'TrueAutomation.IO capybara example' do
   scenario 'Test example 6 - element is not present in container (TA)' do
     1.times do
       visit 'https://trueautomation.io/'
+      find(:xpath, ta('within:container:outside_ta', "//header"))
+      find(:xpath, ta('within:element_inside:negative_2', "(//a[contains(., 'Learn more')])[2]"))
 
-      within(:xpath, ta('within:container:outside', "//header")) do
-        find(:xpath, ta('within:element_inside:2', "(//a[contains(., 'Learn more')])[2]")).click
-      # rescue
-      #   raise 'Checked: the element is outside the container - TA!'
+      within(:xpath, ta('within:container:outside_ta', "//header")) do
+        find(:xpath, ta('within:element_inside:negative_2', "(//a[contains(., 'Learn more')])[2]")).click
+      rescue
+        raise 'Checked: the element is outside the container - TA!'
       end
 
       sleep 3
@@ -88,7 +90,7 @@ feature 'TrueAutomation.IO capybara example' do
     2.times do
       visit 'https://trueautomation.io/'
 
-      within(:xpath, ta('within:container:click_link:2', "//div[@data-id='cb9e2c1']")) do
+      within(:xpath, ta('within:container:click_link_2', "//div[@data-id='cb9e2c1']")) do
         click_link(ta('within:element_inside:click_link', 'Learn more'))
       end
 
@@ -100,7 +102,7 @@ feature 'TrueAutomation.IO capybara example' do
     2.times do
       visit 'https://trueautomation.io/'
 
-      within(:xpath, ta('within:container:click_link:1', "//div[@data-id='41cebdb1']")) do
+      within(:xpath, ta('within:container:click_link_1', "//div[@data-id='41cebdb1']")) do
         click_link(ta('within:element_inside:click_link', 'Learn more'))
       end
 
@@ -136,8 +138,8 @@ feature 'TrueAutomation.IO capybara example' do
     1.times do
       visit 'https://app.trueautomation.io/auth/signin'
 
-      within(:xpath, ta('within:container:fill_in:outside', "//div[@class='container login-header']")) do
-        fill_in(ta('within:element_inside:fill_in:negative', 'username'), with: 'username@domain')
+      within(:xpath, ta('within:container:fill_in:outside_init', "//div[@class='container login-header']")) do
+        fill_in(ta('within:element_inside:fill_in:negative_3', 'username'), with: 'username@domain')
       rescue
         raise 'Checked: the element is outside the container - initialization!'
       end
@@ -149,9 +151,11 @@ feature 'TrueAutomation.IO capybara example' do
   scenario 'Test example 12 - element is not present in container (TA)' do
     1.times do
       visit 'https://app.trueautomation.io/auth/signin'
+      find(:xpath, ta('within:container:fill_in:outside_ta', "//div[@class='container login-header']"))
+      find(:xpath, ta('within:element_inside:fill_in:negative_4', "(//a[contains(., 'Learn more')])[2]"))
 
-      within(:xpath, ta('within:container:fill_in:outside', "//div[@class='container login-header']")) do
-        fill_in(ta('within:element_inside:fill_in:name', 'username'), with: 'username@domain')
+      within(:xpath, ta('within:container:fill_in:outside_ta', "//div[@class='container login-header']")) do
+        fill_in(ta('within:element_inside:fill_in:negative_4', 'username'), with: 'username@domain')
       rescue
         raise 'Checked: the element is outside the container - TA!'
       end

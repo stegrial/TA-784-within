@@ -24,12 +24,18 @@ $data = OpenStruct.new($data)
 Dir[File.join(spec_dir, 'support/**/*.rb')].each {|f| require f}
 
 RSpec.configure do |config|
+  caps_chrome = Selenium::WebDriver::Remote::Capabilities.chrome
+  caps_chrome['chromeOptions'] = {}
+  caps_chrome['chromeOptions']['args'] = ['--disable-notifications']
+
+
   # services = Selenium::WebDriver::Service.chrome(args: {
   #     log_path: "chrome#{Time.now.to_i}.log",
   #     verbose: true
   # })
+
   Capybara.register_driver :true_automation_driver do |app|
-    TrueAutomation::Driver::Capybara.new(app)
+    TrueAutomation::Driver::Capybara.new(app, desired_capabilities: caps_chrome)
   end
 
   # Capybara.register_driver :true_automation_driver do |app|
@@ -41,7 +47,6 @@ RSpec.configure do |config|
     capybara.default_max_wait_time = 5
 
     capybara.default_driver = :true_automation_driver
-    # capybara.default_driver = :chrome
   end
 
   config.include Capybara::DSL

@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/educator-io/trueautomation-libraries
-  revision: b080f40cc2187d99dd1431a26fdb13e017998795
+  revision: 43046eb1a1c5f81e6df470d0788d6631dd281acf
   branch: master
   glob: ruby/true_automation/true_automation.gemspec
   specs:
-    true_automation (0.3.30)
+    true_automation (0.3.31)
 
 GEM
   remote: https://rubygems.org/

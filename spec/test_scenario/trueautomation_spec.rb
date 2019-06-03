@@ -21,10 +21,10 @@ feature 'TrueAutomation.IO capybara example' do
     # scenario 'Test example 13 - click_button' do
     #   1.times do
     #     visit 'https://app.trueautomation.io/auth/signin'
-
-        # within(:xpath, ta('within:container:click_button', "//form")) do
-        #   click_button(ta('within:element_inside:click_button', 'Login'))
-        # end
+    #
+    #     within(:xpath, ta('within:container:click_button', "//form")) do
+    #       click_button(ta('within:element_inside:click_button', 'Login'))
+    #     end
 
         # within(:xpath, "//form") do
         #   click_button 'Login'
@@ -93,15 +93,6 @@ feature 'TrueAutomation.IO capybara example' do
   #   sleep 3
   #   end
   # end
-
-  scenario 'Test example 13 - click_button' do
-      visit 'https://trueautomation.io'
-
-      # find(:xpath, ta('9999', "(//a[@class='jet-logo__link'])[1]")).click
-      find(:xpath, ta('9999', "//a[contains(.,'Login')]")).click
-
-      sleep 3
-  end
 
 
 

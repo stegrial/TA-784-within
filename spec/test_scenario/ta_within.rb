@@ -282,6 +282,7 @@ feature 'TrueAutomation.IO capybara example' do
   scenario 'Test example 22 - Combination test (container: TA, element inside: xpath_brackets)' do
 
     1.times do
+      visit 'https://trueautomation.io/'
       find(:xpath, ta('within:combination:container_TA_6', "//div[@data-id='cb9e2c1']"))
 
       within(:xpath, ta('within:combination:container_TA_6', "//div[@data-id='cb9e2c1']")) do
@@ -325,6 +326,19 @@ feature 'TrueAutomation.IO capybara example' do
 
       within(:xpath, ta('within:container:xpath_brackets', "//div[@data-id='cb9e2c1']")) do
         find(:xpath, ta('within:element_inside:xpath_brackets', "(//a[contains(., 'Learn more')])[1]")).click
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 26 - many brackets in initial locators' do
+
+    1.times do
+      visit 'https://trueautomation.io/'
+
+      within(:xpath, "(//div[@data-id='cb9e2c1'])[1]") do
+        find(:xpath, "((//div[@data-id='6434f6d'])[1]//a[contains(., 'Learn more')])[1]").click
       end
 
       sleep 3

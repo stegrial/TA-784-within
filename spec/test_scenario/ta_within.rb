@@ -48,9 +48,11 @@ feature 'TrueAutomation.IO capybara example' do
       visit 'https://trueautomation.io/'
 
       within(:xpath, ta('within:container:outside_init', "//header")) do
-        find(:xpath, ta('within:element_inside:negative_1', "//a[contains(., 'Learn more')]")).click
-      rescue
-        raise 'Checked: the element is outside the container - initialization!'
+        begin
+          find(:xpath, ta('within:element_inside:negative_1', "//a[contains(., 'Learn more')]")).click
+        rescue
+          raise 'Checked: the element is outside the container - initialization!'
+        end
       end
 
       sleep 3
@@ -64,9 +66,11 @@ feature 'TrueAutomation.IO capybara example' do
       find(:xpath, ta('within:element_inside:negative_2', "(//a[contains(., 'Learn more')])[1]"))
 
       within(:xpath, ta('within:container:outside_ta', "//header")) do
-        find(:xpath, ta('within:element_inside:negative_2', "(//a[contains(., 'Learn more')])[1]")).click
-      rescue
-        raise 'Checked: the element is outside the container - TA!'
+        begin
+          find(:xpath, ta('within:element_inside:negative_2', "(//a[contains(., 'Learn more')])[1]")).click
+        rescue
+          raise 'Checked: the element is outside the container - TA!'
+        end
       end
 
       sleep 3
@@ -153,9 +157,11 @@ feature 'TrueAutomation.IO capybara example' do
       visit 'https://app.trueautomation.io/auth/signin'
 
       within(:xpath, ta('within:container:fill_in:outside_init', "//div[@class='container login-header']")) do
-        fill_in(ta('within:element_inside:fill_in:negative_3', 'username'), with: 'username@domain')
-      rescue
-        raise 'Checked: the element is outside the container - initialization!'
+        begin
+          fill_in(ta('within:element_inside:fill_in:negative_3', 'username'), with: 'username@domain')
+        rescue
+          raise 'Checked: the element is outside the container - initialization!'
+        end
       end
 
       sleep 3
@@ -169,9 +175,11 @@ feature 'TrueAutomation.IO capybara example' do
       fill_in(ta('within:element_inside:fill_in:negative_4', 'username'), with: 'recording')
 
       within(:xpath, ta('within:container:fill_in:outside_ta', "//div[@class='container login-header']")) do
-        fill_in(ta('within:element_inside:fill_in:negative_4', 'username'), with: 'searching')
-      rescue
-        raise 'Checked: the element is outside the container - TA!'
+        begin
+          fill_in(ta('within:element_inside:fill_in:negative_4', 'username'), with: 'searching')
+        rescue
+          raise 'Checked: the element is outside the container - TA!'
+        end
       end
 
       sleep 3

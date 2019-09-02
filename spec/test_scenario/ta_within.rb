@@ -28,7 +28,7 @@ feature 'TrueAutomation.IO capybara example' do
       end
 
       sleep 3
-      end
+    end
   end
 
   scenario 'Test example 3 - find method inside within, locator type :id' do
@@ -40,7 +40,7 @@ feature 'TrueAutomation.IO capybara example' do
       end
 
       sleep 3
-      end
+    end
   end
 
   scenario 'Test example 4 - element is not present in container (initialization)' do
@@ -327,7 +327,112 @@ feature 'TrueAutomation.IO capybara example' do
     end
   end
 
-  scenario 'Test example 25 - the element inside contains brackets in the initial locator' do
+  scenario 'Test example 25 - Combination test (container: TA, element inside: click_link without TA locator)' do
+    1.times do
+      visit 'https://trueautomation.io/'
+      find(:xpath, ta('within:combination_without_ta:container_TA_1', "//header"))
+
+      within(:xpath, ta('within:combination_without_ta:container_TA_1', "//header")) do
+        click_link('Login')
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 26 - Combination test (container: TA, element inside: xpath without TA locator)' do
+    1.times do
+      visit 'https://trueautomation.io/'
+      find(:xpath, ta('within:combination_without_ta:container_TA_2', "//header"))
+
+      within(:xpath, ta('within:combination_without_ta:container_TA_2', "//header")) do
+        find(:xpath, "//a[contains(., 'Login')]").click
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 27 - Combination test (container: TA, element inside: css without TA locator)' do
+    1.times do
+      visit 'https://trueautomation.io/'
+      find(:css, ta('within:combination_without_ta:container_TA_3', "header"))
+
+      within(:css, ta('within:combination_without_ta:container_TA_3', "header")) do
+        find(:css, "div.jet-button__container > a").click
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 28 - Combination test (container: TA, element inside: fill_in without TA locator)' do
+    1.times do
+      visit 'https://app.trueautomation.io/auth/signin'
+      find(:xpath, ta('within:combination_without_ta:container_TA_4', "//form"))
+
+      within(:xpath, ta('within:combination_without_ta:container_TA_4', "//form")) do
+        fill_in 'username', with: 'username@domain'
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 29 - Combination test (container: TA, element inside: select without TA locator)' do
+    1.times do
+      visit 'https://www.facebook.com'
+      find(:id, ta('within:combination_without_ta:container_TA_5', 'reg_box'))
+
+      within(:id, ta('within:combination_without_ta:container_TA_5', 'reg_box')) do
+        select('11', from: 'day')
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 30 - Combination test (container: TA, element inside: xpath_brackets without TA locator)' do
+
+    1.times do
+      visit 'https://trueautomation.io/'
+      find(:xpath, ta('within:combination_without_ta:container_TA_6', "//div[@data-id='cb9e2c1']"))
+
+      within(:xpath, ta('within:combination_without_ta:container_TA_6', "//div[@data-id='cb9e2c1']")) do
+        find(:xpath, "(//a[contains(., 'Learn more')])[1]").click
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 31 - Combination test (container: xpath without TA locator, element inside: TA)' do
+    1.times do
+      visit 'https://trueautomation.io/'
+      find(:xpath, ta('within:combination_without_ta:inside_TA_1', "//a[contains(., 'Login')]"))
+
+      within(:xpath, "//header") do
+        find(:xpath, ta('within:combination_without_ta:inside_TA_1', "//a[contains(., 'Login')]")).click
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 32 - Combination test (container: css without TA locator, element inside: TA)' do
+    1.times do
+      visit 'https://trueautomation.io/'
+      find(:css, ta('within:combination_without_ta:inside_TA_2', "header div.jet-button__container > a"))
+
+      within(:css, "header") do
+        find(:css, ta('within:combination_without_ta:inside_TA_2', "header div.jet-button__container > a")).click
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 33 - the element inside contains brackets in the initial locator' do
 
     2.times do
       visit 'https://trueautomation.io/'
@@ -340,13 +445,100 @@ feature 'TrueAutomation.IO capybara example' do
     end
   end
 
-  scenario 'Test example 26 - many brackets in initial locators' do
+  scenario 'Test example 34 - Test without TA locators - (many brackets in initial locators)' do
 
     1.times do
       visit 'https://trueautomation.io/'
 
       within(:xpath, "(//div[@data-id='cb9e2c1'])[1]") do
         find(:xpath, "((//div[@data-id='6434f6d'])[1]//a[contains(., 'Learn more')])[1]").click
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 35 - Test without TA locators - (find method inside within, locator type :xpath)' do
+
+    1.times do
+      visit 'https://trueautomation.io/'
+
+      within(:xpath, "//header") do
+        find(:xpath, "//a[contains(., 'Login')]").click
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 36 - Test without TA locators - (find method inside within, locator type :css)' do
+
+    1.times do
+      visit 'https://trueautomation.io/'
+
+      within(:css, "div[data-id='cb9e2c1']") do
+        find(:css, "a").click
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 37 - Test without TA locators - (find method inside within, locator type :id)' do
+
+    1.times do
+      visit 'https://www.facebook.com'
+
+      within(:id, 'login_form') do
+        find(:id, 'email').set('username@domain')
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 38 - Test without TA locators - (select method)' do
+    1.times do
+      visit 'https://www.facebook.com'
+
+      within(:id, 'reg_box') do
+        select('11', from: 'day')
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 39 - Test without TA locators - (click_link method)' do
+    1.times do
+      visit 'https://trueautomation.io/'
+
+      within(:xpath, "//header") do
+        click_link('Login')
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 40 - Test without TA locators - (fill_in method)' do
+    1.times do
+      visit 'https://app.trueautomation.io/auth/signin'
+
+      within(:xpath, "//form") do
+        fill_in 'username', with: 'username@domain'
+      end
+
+      sleep 3
+    end
+  end
+
+  scenario 'Test example 41 - Test without TA locators - (choose method)' do
+    2.times do
+      visit 'https://www.facebook.com'
+
+      within(:id, 'reg_box') do
+        choose('Мужчина')
       end
 
       sleep 3
